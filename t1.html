@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template 04 · Terminal / Dense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf7;
+  --bg-alt: #f0efe9;
+  --ink: #0d0d0b;
+  --ink-muted: #6b6b65;
+  --rule: #d8d6ce;
+  --rule-strong: #0d0d0b;
+  --accent: #0a5c36;
+  --accent-soft: #e6f0ea;
+  --flag: #a0321c;
+  --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  --font-serif: 'IBM Plex Serif', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11', 'zero';
+}
+
+.sans { font-family: var(--font-sans); }
+.serif { font-family: var(--font-serif); }
+
+.container { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
+
+/* ===== BRIEF ===== */
+.brief {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.6rem 2rem;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.brief .inner { max-width: 1440px; margin: 0 auto; display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+.brief strong { color: #a0f59b; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+.brief b { color: var(--bg); font-weight: 600; }
+
+/* ===== NAV ===== */
+nav {
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--bg);
+  padding: 0.6rem 2rem;
+  font-size: 0.78rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+nav .inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+nav .brand {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+nav .brand::before { content: "▇ "; color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 1.5rem; justify-content: center; }
+nav ul a { color: var(--ink); text-decoration: none; }
+nav ul a::before { content: "/"; color: var(--ink-muted); margin-right: 0.3rem; }
+nav ul a:hover { color: var(--accent); }
+nav .right { display: flex; gap: 1.2rem; align-items: center; font-size: 0.75rem; }
+nav .cta {
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+nav .cta:hover { background: var(--accent); }
+nav .lang span { color: var(--ink-muted); }
+nav .lang b { font-weight: 600; }
+
+/* ===== STATUS BAR ===== */
+.status-bar {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-alt);
+  padding: 0.4rem 2rem;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+}
+.status-bar .inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.status-bar .cell::before { content: "■ "; color: var(--accent); font-size: 0.6rem; }
+.status-bar .cell b { color: var(--ink); font-weight: 500; }
+
+/* ===== HERO ===== */
+.hero { padding: 5rem 0 3rem; border-bottom: 1px solid var(--rule-strong); }
+
+.hero-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed var(--rule);
+  margin-bottom: 3rem;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+.hero-header div strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.68rem; }
+
+.hero-main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.hero-title-block { min-width: 0; }
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+
+.hero-sub {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 36rem;
+  margin-bottom: 2.5rem;
+}
+.hero-sub b { color: var(--ink); font-weight: 500; }
+
+.hero-ctas { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid var(--rule-strong);
+  transition: all 180ms;
+  font-family: var(--font-mono);
+}
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-secondary { background: var(--bg); color: var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: var(--bg); }
+
+/* Hero side panel (metadata / log) */
+.hero-sidepanel {
+  font-size: 0.72rem;
+  padding: 1.2rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  min-width: 22rem;
+  max-width: 22rem;
+}
+.hero-sidepanel .panel-head {
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px dashed var(--rule);
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+}
+.hero-sidepanel .row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+  padding: 0.3rem 0;
+  color: var(--ink-muted);
+}
+.hero-sidepanel .row b { color: var(--ink); font-weight: 500; }
+.hero-sidepanel .tag {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 1px 6px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ===== SECTION ===== */
+.section { padding: 5rem 0; border-bottom: 1px solid var(--rule-strong); }
+
+.section-header {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 2.5rem;
+  align-items: baseline;
+}
+.section-marker {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+.section-marker strong { color: var(--ink); font-weight: 500; }
+.section-marker::before { content: "§ "; color: var(--accent); }
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ===== SERVICES (table) ===== */
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.services-table thead th {
+  text-align: left;
+  padding: 0.7rem 0.8rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--bg-alt);
+}
+.services-table tbody tr { transition: background 180ms; border-bottom: 1px solid var(--rule); }
+.services-table tbody tr:hover { background: var(--accent-soft); cursor: pointer; }
+.services-table tbody tr:last-child { border-bottom: 1px solid var(--rule-strong); }
+.services-table td {
+  padding: 1.4rem 0.8rem;
+  vertical-align: top;
+}
+.services-table td.code { color: var(--accent); font-weight: 500; width: 5rem; }
+.services-table td.name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 400;
+}
+.services-table td.name em { font-style: italic; color: var(--ink-muted); font-size: 0.85rem; display: block; margin-top: 0.2rem; }
+.services-table td.desc {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  max-width: 26rem;
+}
+.services-table td.meta { color: var(--ink-muted); font-size: 0.78rem; white-space: nowrap; }
+.services-table td.arrow { text-align: right; color: var(--ink-muted); font-size: 1rem; width: 3rem; }
+.services-table tr:hover td.arrow { color: var(--accent); }
+
+/* ===== APPROACH ===== */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule-strong);
+}
+.approach-cell {
+  padding: 2rem;
+  border-right: 1px solid var(--rule);
+  background: var(--bg);
+  transition: background 180ms;
+}
+.approach-cell:last-child { border-right: none; }
+.approach-cell:hover { background: var(--bg-alt); }
+.approach-cell .num {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 0.85;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+.approach-cell .num::after { content: "."; color: var(--ink); }
+.approach-cell h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.approach-cell .tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  display: block;
+}
+.approach-cell p {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.approach-quote {
+  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+.approach-quote::before { content: "// "; color: var(--accent); font-style: normal; }
+
+/* ===== ABOUT ===== */
+.about-layout {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.about-portrait {
+  aspect-ratio: 4/5;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+.about-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  padding: 2rem;
+}
+.about-card .kv {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  font-size: 0.78rem;
+  border-bottom: 1px dashed var(--rule);
+}
+.about-card .kv:last-of-type { border-bottom: none; margin-bottom: 1rem; }
+.about-card .kv b { color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.7rem; }
+.about-card .kv span { color: var(--ink-muted); }
+
+.about-content h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.about-content h2 em { font-style: italic; color: var(--accent); }
+.about-content p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  max-width: 36rem;
+}
+
+.values {
+  margin-top: 2.5rem;
+  border: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.value {
+  padding: 1.5rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.value:nth-child(2n) { border-right: none; }
+.value:nth-last-child(-n+2) { border-bottom: none; }
+.value .tag {
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+.value h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.value p { font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.55; color: var(--ink-muted); }
+
+/* ===== CONTACT (as form-like panel) ===== */
+.contact { padding: 5rem 0; background: var(--bg-alt); border-bottom: 1px solid var(--rule-strong); }
+
+.contact-panel {
+  border: 1px solid var(--rule-strong);
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 20rem;
+}
+.contact-left { padding: 3rem; border-right: 1px solid var(--rule-strong); background: var(--ink); color: var(--bg); display: flex; flex-direction: column; justify-content: space-between; }
+.contact-left .contact-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: #a0f59b; margin-bottom: 1rem; }
+.contact-left .contact-label::before { content: "● "; }
+.contact-left h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
+.contact-left h2 em { font-style: italic; color: #a0f59b; }
+.contact-left p { font-family: var(--font-sans); font-size: 0.95rem; line-height: 1.55; opacity: 0.7; max-width: 26rem; }
+.contact-left .status {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.6);
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(255,255,255,0.15);
+}
+.contact-left .status b { color: #a0f59b; font-weight: 500; }
+
+.contact-right { padding: 3rem; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
+.contact-right .field {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1rem;
+}
+.contact-right .field-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  margin-bottom: 0.4rem;
+}
+.contact-right .field a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+  transition: color 180ms;
+}
+.contact-right .field a:hover { color: var(--accent); }
+.contact-right .field-action {
+  margin-top: 1.5rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 1.5rem 2rem;
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  background: var(--bg);
+}
+footer .inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+}
+footer a { color: var(--ink-muted); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+footer .footer-label { color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.65rem; margin-bottom: 0.3rem; display: block; }
+
+@media (max-width: 900px) {
+  html { font-size: 14px; }
+  nav ul { display: none; }
+  nav .inner { grid-template-columns: 1fr auto; }
+  .hero-header { grid-template-columns: 1fr; gap: 1rem; }
+  .hero-main { grid-template-columns: 1fr; }
+  .hero-sidepanel { max-width: none; min-width: 0; }
+  .section { padding: 3rem 0; }
+  .section-header { grid-template-columns: 1fr; gap: 1rem; }
+  .services-table thead { display: none; }
+  .services-table, .services-table tbody, .services-table tr, .services-table td { display: block; width: 100%; }
+  .services-table td { padding: 0.4rem 0; }
+  .services-table tr { padding: 1.2rem 0; }
+  .approach-grid { grid-template-columns: 1fr; }
+  .approach-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+  .approach-cell:last-child { border-bottom: none; }
+  .about-layout, .contact-panel, .values { grid-template-columns: 1fr; }
+  .contact-left { border-right: none; border-bottom: 1px solid var(--rule-strong); }
+  .value { border-right: none; border-bottom: 1px solid var(--rule); }
+  .value:last-child { border-bottom: none; }
+  footer .inner { grid-template-columns: 1fr 1fr; }
+  .brief .inner { font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- BRIEF -->
+<div class="brief">
+  <div class="inner">
+    <strong>Template 04 / 04</strong>
+    <span><b>Terminal / Dense.</b> Paper background, IBM Plex Mono + Sans + Serif, forest-green accent, 1px hairlines, tables instead of cards, status bars, key-value panels, monospace status indicators. Influences: Nat Friedman, Ink & Switch, Cursor changelog, Stripe dashboards, research lab websites. Signals <em>technical practitioner</em> more than <em>senior advisor</em> — quiet authority through information density.</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <div class="brand">practice.name</div>
+    <ul>
+      <li><a href="#">services</a></li>
+      <li><a href="#">approach</a></li>
+      <li><a href="#">writing</a></li>
+      <li><a href="#">about</a></li>
+    </ul>
+    <div class="right">
+      <div class="lang"><b>en</b><span> / de</span></div>
+      <a href="#" class="cta">book intro →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="inner">
+    <div class="cell"><b>status:</b> accepting engagements · Q2 2026</div>
+    <div class="cell"><b>location:</b> Basel, CH</div>
+    <div class="cell"><b>languages:</b> EN · DE</div>
+    <div class="cell"><b>response time:</b> &lt; 24h</div>
+    <div class="cell"><b>v</b> 4.04.01</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-header">
+      <div>
+        <strong>Index</strong>
+        A boutique practice working at the intersection of topic, topic, and topic — founder-led, platform-agnostic.
+      </div>
+      <div>
+        <strong>Est.</strong>
+        2024 · Switzerland / operating in EN, DE
+      </div>
+      <div>
+        <strong>Clients</strong>
+        Swiss SMEs · universities · public institutions · knowledge-heavy orgs
+      </div>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-title-block">
+        <h1>
+          Placeholder<br>
+          headline <em>goes here.</em>
+        </h1>
+        <p class="hero-sub">
+          A <b>precise</b> positioning statement lives here. The terminal aesthetic suits practices that want to be read carefully, not scanned quickly.
+        </p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-primary">→ book intro</a>
+          <a href="#" class="btn-secondary">→ read manifesto</a>
+          <a href="#" class="btn-secondary">→ services.txt</a>
+        </div>
+      </div>
+
+      <aside class="hero-sidepanel">
+        <div class="panel-head"><span>./practice.log</span><span>updated 3h ago</span></div>
+        <div class="row"><b>founder</b><span>Name Surname</span></div>
+        <div class="row"><b>role</b><span>Advisor, strategist</span></div>
+        <div class="row"><b>focus</b><span>Practice domain</span></div>
+        <div class="row"><b>method</b><span>Discovery → design → scale</span></div>
+        <div class="row"><b>credentials</b><span>Cred one, cred two</span></div>
+        <div class="row"><b>languages</b><span>EN, DE</span></div>
+        <div class="row"><b>availability</b><span><span class="tag">OPEN Q2 2026</span></span></div>
+        <div class="row"><b>capacity</b><span>2 active engagements</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-marker"><strong>01 /</strong> services</div>
+      <h2 class="section-title">Three engagements.<br><em>Named. Scoped. Honest pricing.</em></h2>
+    </div>
+
+    <table class="services-table">
+      <thead>
+        <tr>
+          <th style="width:5rem;">code</th>
+          <th style="width:16rem;">engagement</th>
+          <th>description</th>
+          <th style="width:9rem;">duration</th>
+          <th style="width:9rem;">format</th>
+          <th style="width:3rem;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="code">01</td>
+          <td class="name">Diagnostic<em>entry-level</em></td>
+          <td class="desc">Placeholder description of the first service. One or two tight sentences about scope, outcome, and who it's for.</td>
+          <td class="meta">2–4 weeks</td>
+          <td class="meta">fixed scope</td>
+          <td class="arrow">→</td>
+        </tr>
+        <tr>
+          <td class="code">02</td>
+          <td class="name">Blueprint<em>core offer</em></td>
+          <td class="desc">Placeholder description of the core offer. The most-scoped engagement in the portfolio, treated with care.</td>
+          <td class="meta">6–10 weeks</td>
+          <td class="meta">fixed scope</td>
+          <td class="arrow">→</td>
+        </tr>
+        <tr>
+          <td class="code">03</td>
+          <td class="name">Briefing<em>leadership-tier</em></td>
+          <td class="desc">Placeholder description of a leadership-tier offer. Shorter in duration, smaller audience, higher-context outcome.</td>
+          <td class="meta">half day</td>
+          <td class="meta">team of 5–12</td>
+          <td class="arrow">→</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-marker"><strong>02 /</strong> approach</div>
+      <h2 class="section-title">The <em>working</em> model.<br>Three phases. No surprises.</h2>
+    </div>
+
+    <div class="approach-grid">
+      <div class="approach-cell">
+        <div class="num">01</div>
+        <span class="tag">discovery</span>
+        <h3>Phase one</h3>
+        <p>Placeholder description of the first phase. Written in plain language, descriptive of what actually happens.</p>
+      </div>
+      <div class="approach-cell">
+        <div class="num">02</div>
+        <span class="tag">design</span>
+        <h3>Phase two</h3>
+        <p>Placeholder description of the middle phase. The bulk of the work, and where most value is created.</p>
+      </div>
+      <div class="approach-cell">
+        <div class="num">03</div>
+        <span class="tag">scale</span>
+        <h3>Phase three</h3>
+        <p>Placeholder description of the third phase. Handover, scale, or embedding — the phase that makes the practice unnecessary.</p>
+      </div>
+    </div>
+
+    <div class="approach-quote">
+      A short aphoristic sentence that names the working philosophy of the practice — one line, no fluff.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-marker"><strong>03 /</strong> about</div>
+      <h2 class="section-title">The <em>founder.</em></h2>
+    </div>
+
+    <div class="about-layout">
+      <div>
+        <div class="about-portrait">PORTRAIT — 4:5</div>
+        <div class="about-card" style="margin-top: 1rem;">
+          <div class="kv"><b>name</b><span>Name Surname</span></div>
+          <div class="kv"><b>role</b><span>Founder, advisor</span></div>
+          <div class="kv"><b>based</b><span>Basel, CH</span></div>
+          <div class="kv"><b>langs</b><span>EN · DE</span></div>
+          <div class="kv"><b>since</b><span>2024</span></div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <h2>A one-line <em>positioning</em> statement about the founder.</h2>
+        <p>Placeholder paragraph about background, career, and what distinguishes this practitioner. Written in plain language, specific about credentials and context.</p>
+        <p>Second paragraph — often about method, values, or the kind of work the practice is built for.</p>
+
+        <div class="values">
+          <div class="value">
+            <div class="tag">v.01</div>
+            <h4>Value one</h4>
+            <p>One sentence elaboration of the value in natural language.</p>
+          </div>
+          <div class="value">
+            <div class="tag">v.02</div>
+            <h4>Value two</h4>
+            <p>One sentence elaboration of the value in natural language.</p>
+          </div>
+          <div class="value">
+            <div class="tag">v.03</div>
+            <h4>Value three</h4>
+            <p>One sentence elaboration of the value in natural language.</p>
+          </div>
+          <div class="value">
+            <div class="tag">v.04</div>
+            <h4>Value four</h4>
+            <p>One sentence elaboration of the value in natural language.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="container">
+    <div class="contact-panel">
+      <div class="contact-left">
+        <div>
+          <div class="contact-label">04 / contact</div>
+          <h2>Ready for the<br><em>next step?</em></h2>
+          <p>A short invitation to get in touch — named, specific, calm in tone.</p>
+        </div>
+        <div class="status">
+          <b>status:</b> currently accepting engagements for Q2 2026 · avg. response &lt; 24h
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="field">
+          <div class="field-label">Email</div>
+          <a href="#">hello@practice.ch</a>
+        </div>
+        <div class="field">
+          <div class="field-label">LinkedIn</div>
+          <a href="#">linkedin.com/in/founder</a>
+        </div>
+        <div class="field-action">
+          <a href="#" class="btn-primary">→ book intro call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <div class="footer-label">© 2026</div>
+      Practice Name
+    </div>
+    <div>
+      <div class="footer-label">location</div>
+      Basel, CH
+    </div>
+    <div>
+      <div class="footer-label">legal</div>
+      <a href="#">imprint</a> · <a href="#">privacy</a>
+    </div>
+    <div>
+      <div class="footer-label">connect</div>
+      <a href="#">email</a> · <a href="#">linkedin</a>
+    </div>
+    <div style="text-align:right;">
+      <div class="footer-label">build</div>
+      v4.04 · terminal
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

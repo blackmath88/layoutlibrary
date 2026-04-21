@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template 02 · Editorial Brutalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ece8e0;
+  --ink: #111;
+  --ink-soft: #2a2a28;
+  --accent: #ff4d1a;
+  --yellow: #e6d53f;
+  --font-display: 'Fraunces', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.mono { font-family: var(--font-mono); }
+.display { font-family: var(--font-display); font-optical-sizing: auto; }
+
+.container { max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
+
+/* ===== BRIEF ===== */
+.brief {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.8rem 2rem;
+  font-size: 0.78rem;
+  border-bottom: 3px solid var(--accent);
+}
+.brief .inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.brief strong { color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+.brief b { color: var(--yellow); font-weight: 500; }
+
+/* ===== NAV ===== */
+nav {
+  border-bottom: 3px solid var(--ink);
+  padding: 1.2rem 2rem;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+nav .inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+nav .brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-style: italic;
+}
+nav .brand sup { font-size: 0.7rem; font-style: normal; color: var(--accent); }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+nav ul a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  position: relative;
+  padding: 0.3rem 0;
+}
+nav ul a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 200ms;
+}
+nav ul a:hover::after { width: 100%; }
+nav .cta {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  border: 3px solid var(--ink);
+  transition: all 200ms;
+}
+nav .cta:hover { background: var(--accent); border-color: var(--accent); }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 4rem 0 6rem;
+  border-bottom: 3px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.hero-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+.hero-label span { display: flex; gap: 0.4rem; align-items: center; }
+.hero-label .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 17vw, 17rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  font-optical-sizing: auto;
+  margin-bottom: 3rem;
+}
+.hero h1 .word-1 { display: block; }
+.hero h1 .word-2 { display: block; font-style: italic; font-weight: 300; padding-left: 2em; }
+.hero h1 .word-3 { display: block; }
+.hero h1 .word-3::after { content: "."; color: var(--accent); }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 2rem;
+  align-items: start;
+}
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 400;
+  max-width: 28rem;
+  letter-spacing: -0.01em;
+}
+.hero-sub em { font-style: italic; color: var(--accent); }
+.hero-meta {
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+.hero-meta strong { display: block; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.hero-ctas { display: flex; flex-direction: column; gap: 0.6rem; }
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.3rem;
+  text-decoration: none;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  transition: all 200ms;
+  border: 3px solid var(--ink);
+}
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-secondary { background: var(--yellow); color: var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: var(--yellow); }
+
+/* Big marquee-like running text */
+.marquee {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 1rem 0;
+  overflow: hidden;
+  border-bottom: 3px solid var(--ink);
+}
+.marquee-inner {
+  display: flex;
+  gap: 4rem;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 300;
+}
+.marquee-inner span::after { content: " ✦ "; color: var(--accent); font-style: normal; margin-left: 2rem; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: 5rem 0;
+  border-bottom: 3px solid var(--ink);
+}
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--ink);
+}
+.section-marker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.4rem;
+}
+.section-marker strong { color: var(--accent); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+.section-title em { font-style: italic; }
+
+/* ===== SERVICES ===== */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 3px solid var(--ink);
+}
+.service {
+  padding: 2.5rem 2rem;
+  border-right: 3px solid var(--ink);
+  background: var(--bg);
+  transition: background 220ms;
+  position: relative;
+}
+.service:last-child { border-right: none; }
+.service:hover { background: var(--yellow); }
+.service .num {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 0.8;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+.service h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.05;
+}
+.service p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 2rem;
+}
+.service .meta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===== APPROACH (overlap / pull-quote mix) ===== */
+.approach-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  line-height: 1.0;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-style: italic;
+  padding: 2rem;
+  border: 3px solid var(--ink);
+  background: var(--yellow);
+  position: sticky;
+  top: 8rem;
+}
+.pull-quote .mark { color: var(--accent); font-size: 1.5em; line-height: 0; display: inline-block; vertical-align: -0.2em; }
+.approach-items .item {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.approach-items .item:last-child { border-bottom: none; }
+.approach-items .n {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 0.9;
+  color: var(--accent);
+}
+.approach-items h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+.approach-items p { font-size: 0.92rem; line-height: 1.55; }
+
+/* ===== ABOUT — overlapping collage ===== */
+.about-layout {
+  position: relative;
+  padding-top: 4rem;
+}
+.about-portrait {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  width: 22rem;
+  aspect-ratio: 4/5;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(2deg);
+  box-shadow: -8px 8px 0 var(--accent);
+  z-index: 2;
+}
+.about-text {
+  max-width: 48rem;
+}
+.about-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin-bottom: 2rem;
+}
+.about-text h2 em { font-style: italic; color: var(--accent); }
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  max-width: 38rem;
+}
+.values {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+  max-width: 52rem;
+}
+.value { border-top: 3px solid var(--ink); padding-top: 1.2rem; }
+.value h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.value h4::before { content: "⟶ "; color: var(--accent); }
+.value p { font-size: 0.88rem; line-height: 1.55; }
+
+/* ===== CONTACT ===== */
+.contact {
+  padding: 6rem 0 8rem;
+  background: var(--accent);
+  color: var(--ink);
+  border-bottom: 3px solid var(--ink);
+  position: relative;
+}
+.contact h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 12vw, 14rem);
+  line-height: 0.85;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  margin-bottom: 3rem;
+}
+.contact h2 em { font-style: italic; font-weight: 300; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 3rem;
+  align-items: end;
+  border-top: 3px solid var(--ink);
+  padding-top: 3rem;
+}
+.contact-grid .label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.contact-grid a {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 2px;
+}
+.contact-cta-big {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 1.4rem 2rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 3px solid var(--ink);
+  transition: all 200ms;
+}
+.contact-cta-big:hover { background: var(--yellow); color: var(--ink); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 2rem;
+  font-size: 0.78rem;
+}
+footer .inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+footer a { color: var(--yellow); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .hero { padding: 2rem 0 4rem; }
+  .hero-bottom, .services, .approach-layout, .about-layout, .contact-grid { grid-template-columns: 1fr; }
+  .services { border-left: 3px solid var(--ink); border-right: 3px solid var(--ink); }
+  .service { border-right: none; border-bottom: 3px solid var(--ink); }
+  .service:last-child { border-bottom: none; }
+  nav ul { display: none; }
+  .about-portrait { position: static; width: 100%; max-width: 16rem; margin-bottom: 2rem; transform: none; }
+  .values { grid-template-columns: 1fr; }
+  footer .inner { grid-template-columns: 1fr 1fr; }
+  .hero h1 .word-2 { padding-left: 0.5em; }
+  .pull-quote { position: static; }
+  .section { padding: 3rem 0; }
+  .brief .inner { font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- BRIEF -->
+<div class="brief">
+  <div class="inner">
+    <strong>Template 02 / 04</strong>
+    <span><b>Editorial Brutalist.</b> Warm paper cream, 3px hard borders, Fraunces display + JetBrains Mono, orange + yellow spot colours, overlapping elements, rotation, shadow-offsets. Influences: Pentagram editorial, Basedash, once.tools, the Awwwards-ish <em>zine</em> aesthetic. Memorable, confident, borderline too much — which is the point.</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <div class="brand">Brand<sup>®</sup> <span style="font-style:normal;font-weight:400;font-size:1rem;color:#2a2a28;margin-left:0.3rem;">— practice.</span></div>
+    <ul>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Method</a></li>
+      <li><a href="#">Archive</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a href="#" class="cta">Intro →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">
+      <span><span class="dot"></span> Issue № 04 / Spring 2026</span>
+      <span>Basel ⟶ World</span>
+      <span>Founder-led</span>
+    </div>
+
+    <h1>
+      <span class="word-1">Placeholder</span>
+      <span class="word-2">headline</span>
+      <span class="word-3">goes here</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <div class="hero-sub">
+        A <em>punchy</em> one-or-two-sentence positioning statement goes here, written with real voice — not corporate safety-speak.
+      </div>
+      <div class="hero-meta">
+        <strong>What this is</strong>
+        Placeholder: a boutique practice working at the intersection of <em>topic</em>, <em>topic</em>, and <em>topic</em>.<br><br>
+        <strong>Who it's for</strong>
+        Placeholder: a specific description of the ideal client archetype.
+      </div>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Book intro →</a>
+        <a href="#" class="btn-secondary">Read manifesto ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>Positioning phrase one</span>
+    <span>Positioning phrase two</span>
+    <span>Positioning phrase three</span>
+    <span>Positioning phrase four</span>
+    <span>Positioning phrase one</span>
+    <span>Positioning phrase two</span>
+    <span>Positioning phrase three</span>
+    <span>Positioning phrase four</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-marker"><strong>§ 01 /</strong> Services</div>
+      <h2 class="section-title">Three <em>offers.</em><br>Named, scoped, priced.</h2>
+    </div>
+
+    <div class="services">
+      <article class="service">
+        <div class="num">01</div>
+        <h3>Diagnostic</h3>
+        <p>Placeholder description of the entry-level service. Written with real voice — specific about scope and outcome.</p>
+        <div class="meta"><span>2–4 weeks</span><span>→</span></div>
+      </article>
+      <article class="service">
+        <div class="num">02</div>
+        <h3>Blueprint</h3>
+        <p>Placeholder description of the core offer. This is the most frequently scoped engagement in the portfolio.</p>
+        <div class="meta"><span>6–10 weeks</span><span>→</span></div>
+      </article>
+      <article class="service">
+        <div class="num">03</div>
+        <h3>Briefing</h3>
+        <p>Placeholder description of a leadership-tier offer. Shorter, tighter, higher-signal.</p>
+        <div class="meta"><span>Half day</span><span>→</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-marker"><strong>§ 02 /</strong> Method</div>
+      <h2 class="section-title"><em>Working</em> philosophy</h2>
+    </div>
+
+    <div class="approach-layout">
+      <div class="pull-quote">
+        <span class="mark">"</span>A short aphoristic sentence that captures the working philosophy of the practice.<span class="mark">"</span>
+      </div>
+      <div class="approach-items">
+        <div class="item">
+          <div class="n">i</div>
+          <div>
+            <h3>First phase</h3>
+            <p>Placeholder paragraph about what happens in the first phase of the engagement, why it matters, and what you leave with.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="n">ii</div>
+          <div>
+            <h3>Second phase</h3>
+            <p>Placeholder paragraph about the middle phase. Often the longest and most substantive.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="n">iii</div>
+          <div>
+            <h3>Third phase</h3>
+            <p>Placeholder paragraph about handover, scale, or embedding — the phase where the practice makes itself unnecessary.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-marker"><strong>§ 03 /</strong> About</div>
+      <h2 class="section-title">The <em>founder.</em></h2>
+    </div>
+
+    <div class="about-layout">
+      <div class="about-portrait">PORTRAIT — 4:5</div>
+      <div class="about-text">
+        <h2>A memorable <em>positioning line</em> about the founder.</h2>
+        <p>Placeholder paragraph about background and why this person does this work. Voice-forward, specific, a touch personal.</p>
+        <p>Second paragraph — usually where values meet method. Short, confident.</p>
+
+        <div class="values">
+          <div class="value">
+            <h4>Value one</h4>
+            <p>Short sentence elaborating the value prop in natural language.</p>
+          </div>
+          <div class="value">
+            <h4>Value two</h4>
+            <p>Short sentence elaborating the value prop in natural language.</p>
+          </div>
+          <div class="value">
+            <h4>Value three</h4>
+            <p>Short sentence elaborating the value prop in natural language.</p>
+          </div>
+          <div class="value">
+            <h4>Value four</h4>
+            <p>Short sentence elaborating the value prop in natural language.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="container">
+    <h2><em>Let's</em><br>talk.</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="label">Email</div>
+        <a href="#">hello@practice.ch</a>
+      </div>
+      <div>
+        <div class="label">LinkedIn</div>
+        <a href="#">linkedin.com/in/founder</a>
+      </div>
+      <a href="#" class="contact-cta-big">Book intro →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>© 2026 Practice</div>
+    <div>Basel, CH</div>
+    <div><a href="#">Imprint</a> · <a href="#">Privacy</a></div>
+    <div style="text-align:right;">v4.02 / Editorial Brutalist</div>
+  </div>
+</footer>
+
+</body>
+</html>
